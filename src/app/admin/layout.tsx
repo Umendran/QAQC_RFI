@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-
+import { ThemeProvider, useTheme } from "next-themes";
 import { useState } from "react"
 import Link from "next/link"
 import {
@@ -16,6 +16,8 @@ import {
   Bell,
   Search,
   Menu,
+  Moon,
+  Sun,
   X,
   LogOut,
   User,
@@ -23,7 +25,21 @@ import {
 import { useSearchParams } from "next/navigation"
 import { Suspense } from "react"
 
-export default function AdminLayout({
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body>
+        <ThemeProvider attribute="class">
+          <AdminLayout>{children}</AdminLayout>
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}
+
+
+function AdminLayout({
   children,
 }: {
   children: React.ReactNode
@@ -41,10 +57,10 @@ export default function AdminLayout({
     { name: "OERE", href: "/admin/oere", icon: FileSpreadsheet },
     { name: "CMS", href: "/admin/cms", icon: FileBox },
   ]
-
+const { theme, setTheme } = useTheme();
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200">
         {/* Mobile sidebar backdrop */}
         {sidebarOpen && (
           <div
@@ -55,16 +71,15 @@ export default function AdminLayout({
 
         {/* Sidebar */}
         <aside
-          className={`fixed inset-y-0 left-0 z-50 w-64 transform bg-white shadow-lg transition-transform duration-300 ease-in-out md:translate-x-0 ${
-            sidebarOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed inset-y-0 left-0 z-50 w-64 transform bg-white dark:bg-gray-800 shadow-lg transition-transform duration-300 ease-in-out md:translate-x-0 ${sidebarOpen ? "translate-x-0" : "-translate-x-full"
+            }`}
         >
           <div className="flex h-16 items-center justify-between border-b px-4">
             <Link href="/admin" className="flex items-center">
-              <span className="text-xl font-bold text-gray-900">Admin Portal</span>
+              <span className="text-xl font-bold text-gray-900 dark:text-gray-200">Admin Portal</span>
             </Link>
             <button
-              className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 md:hidden"
+              className="rounded-md p-2 text-gray-500 dark:text-gray-200 hover:bg-gray-100 hover:text-gray-600 md:hidden"
               onClick={() => setSidebarOpen(false)}
             >
               <X className="h-6 w-6" />
@@ -76,7 +91,7 @@ export default function AdminLayout({
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 hover:text-gray-900"
+                  className="group flex items-center rounded-md px-3 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 dark:hover:bg-gray-300 dark:hover:text-black hover:bg-gray-100 hover:text-gray-900"
                 >
                   <item.icon className="mr-3 h-5 w-5 text-gray-500 group-hover:text-gray-600" />
                   {item.name}
@@ -89,7 +104,7 @@ export default function AdminLayout({
         {/* Main content */}
         <div className="flex flex-col md:pl-64">
           {/* Top navigation */}
-          <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white shadow-sm px-4 md:px-6">
+          <header className="sticky top-0 z-10 flex h-16 items-center justify-between bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 shadow-sm px-4 md:px-6">
             <button
               className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 md:hidden"
               onClick={() => setSidebarOpen(true)}
@@ -99,7 +114,7 @@ export default function AdminLayout({
 
             <div className="flex flex-1 justify-end items-center space-x-4">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-200" />
                 <input
                   type="text"
                   placeholder="Search..."
@@ -107,17 +122,24 @@ export default function AdminLayout({
                 />
               </div>
 
-              <button className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600">
+              <button
+                className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600"
+                onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              >
+                {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
+              </button>
+
+              <button className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600 ">
                 <Bell className="h-6 w-6" />
                 <span className="absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-500"></span>
               </button>
 
               <div className="relative">
-                <button className="flex items-center space-x-2 rounded-full p-1 text-gray-700 hover:bg-gray-100">
+                <button className="flex items-center space-x-2 rounded-full p-1 text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600">
                     <User className="h-5 w-5" />
                   </div>
-                  <span className="hidden text-sm font-medium md:block">Admin User</span>
+                  <span className="hidden text-sm font-medium md:block dark:text-gray-200">Admin User</span>
                 </button>
               </div>
 
