@@ -58,7 +58,7 @@ export default function UsersPage() {
         </button>
       </div>
 
-      <div className="rounded-lg border bg-white shadow">
+      <div className="rounded-lg border bg-white dark:bg-gray-800 shadow">
         <div className="flex flex-col space-y-3 p-4 sm:flex-row sm:items-center sm:justify-between sm:space-y-0 border-b">
           <div className="relative w-full sm:max-w-xs">
             <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400" />
@@ -82,7 +82,7 @@ export default function UsersPage() {
 
         <div className="overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 dark:bg-gray-800">
               <tr>
                 <th
                   scope="col"
@@ -137,9 +137,9 @@ export default function UsersPage() {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200 bg-white">
+            <tbody className="divide-y divide-gray-200 bg-white dark:bg-gray-800">
               {users.map((user) => (
-                <tr key={user.id} className="hover:bg-gray-50">
+                <tr key={user.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="whitespace-nowrap px-6 py-4">
                     <div className="flex items-center">
                       <div className="h-10 w-10 flex-shrink-0">
@@ -148,15 +148,15 @@ export default function UsersPage() {
                         </div>
                       </div>
                       <div className="ml-4">
-                        <div className="text-sm font-medium text-gray-900">{user.name}</div>
+                        <div className="text-sm font-medium text-gray-900 dark:text-gray-200">{user.name}</div>
                       </div>
                     </div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className="text-sm text-gray-900">{user.email}</div>
+                    <div className="text-sm text-gray-900 dark:text-gray-200">{user.email}</div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
-                    <div className="text-sm text-gray-900">{user.role}</div>
+                    <div className="text-sm text-gray-900 dark:text-gray-200">{user.role}</div>
                   </td>
                   <td className="whitespace-nowrap px-6 py-4">
                     <span
@@ -183,24 +183,24 @@ export default function UsersPage() {
           </table>
         </div>
 
-        <div className="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
+        <div className="flex items-center justify-between border-t border-gray-200 bg-white dark:bg-gray-800 px-4 py-3 sm:px-6">
           <div className="flex flex-1 justify-between sm:hidden">
-            <button className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+            <button className="relative inline-flex items-center rounded-md border border-gray-300 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
               Previous
             </button>
-            <button className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+            <button className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white dark:bg-gray-800 px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
               Next
             </button>
           </div>
           <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm text-gray-700">
+              <p className="text-sm text-gray-700 dark:text-gray-300">
                 Showing <span className="font-medium">1</span> to <span className="font-medium">8</span> of{" "}
                 <span className="font-medium">24</span> results
               </p>
             </div>
             <div>
-              <nav className="isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+              <nav className=" isolate inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
                 <button className="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
                   <span className="sr-only">Previous</span>
                   <svg className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">

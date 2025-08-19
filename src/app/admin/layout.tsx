@@ -123,13 +123,13 @@ const { theme, setTheme } = useTheme();
               </div>
 
               <button
-                className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600"
+                className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-400"
                 onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
               >
                 {theme === "dark" ? <Sun className="h-6 w-6" /> : <Moon className="h-6 w-6" />}
               </button>
 
-              <button className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600 ">
+              <button className="relative rounded-full p-1 text-gray-500 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-400 ">
                 <Bell className="h-6 w-6" />
                 <span className="absolute right-1 top-1 flex h-2 w-2 rounded-full bg-red-500"></span>
               </button>
@@ -143,7 +143,7 @@ const { theme, setTheme } = useTheme();
                 </button>
               </div>
 
-              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600">
+              <button className="rounded-md p-2 text-gray-500 hover:bg-gray-100 hover:text-gray-600 dark:hover:bg-gray-400">
                 <LogOut className="h-5 w-5" />
               </button>
             </div>
