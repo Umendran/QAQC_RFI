@@ -7,6 +7,7 @@ import Link from "next/link"
 import {
   BarChart3,
   Users,
+  InspectionPanel,
   FolderKanban,
   Briefcase,
   Package,
@@ -49,6 +50,7 @@ function AdminLayout({
 
   const navItems = [
     { name: "Dashboard", href: "/admin", icon: BarChart3 },
+    { name: "RFI Request", href: "/admin/rfi", icon: InspectionPanel },
     { name: "Users", href: "/admin/users", icon: Users },
     { name: "Projects", href: "/admin/projects", icon: FolderKanban },
     { name: "Work Discipline", href: "/admin/work-discipline", icon: Briefcase },

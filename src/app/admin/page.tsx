@@ -15,6 +15,14 @@ import { DashboardBarChart } from "@/components/barchart"
 export default function AdminDashboard() {
   // Dashboard cards data
   const cards = [
+      {
+      title: "RFI Requests",
+      count: "254",
+      icon: Users,
+      href: "/admin/users",
+      color: "bg-blue-500 dark:bg-blue-600",
+      description: "Active user accounts",
+    },
     {
       title: "Users",
       count: "254",
